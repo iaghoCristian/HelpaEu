@@ -1,14 +1,11 @@
+import 'package:HelpaEu/auth/auth.dart';
+import 'package:HelpaEu/pages/home.dart';
 import 'package:HelpaEu/resources/color.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 bool botaoCliente = true;
 bool botaoPrestador = false;
-
-String nome;
-String email;
-String senha;
-String servico;
 
 final _formKey = GlobalKey<FormState>();
 
@@ -18,6 +15,11 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
+  final nome = TextEditingController();
+  final email = TextEditingController();
+  final senha = TextEditingController();
+  final servico = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +43,11 @@ class _CadastroState extends State<Cadastro> {
               Column(
                 children: <Widget>[
                   TextFormField(
+                    controller: nome,
                     style: TextStyle(color: Colors.white),
                     validator: (value) {
                       if (value.isEmpty) return "O campo é obrigatório";
                     },
-                    onSaved: (newValue) => nome = newValue,
                     decoration: InputDecoration(
                         labelText: 'Nome',
                         labelStyle: TextStyle(color: Colors.grey),
@@ -54,7 +56,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                   TextFormField(
                     style: TextStyle(color: Colors.white),
-                    onSaved: (newValue) => email = newValue,
+                    controller: email,
                     validator: (value) {
                       if (value.isEmpty) return "O campo é obrigatório";
                       if (!EmailValidator.validate(value))
@@ -68,7 +70,7 @@ class _CadastroState extends State<Cadastro> {
                   ),
                   TextFormField(
                     style: TextStyle(color: Colors.white),
-                    onSaved: (newValue) => senha = newValue,
+                    controller: senha,
                     validator: (value) {
                       if (value.isEmpty) return "O campo é obrigatório";
                       if (value.length < 6)
@@ -85,7 +87,7 @@ class _CadastroState extends State<Cadastro> {
                     visible: botaoPrestador,
                     child: TextFormField(
                       style: TextStyle(color: Colors.white),
-                      onSaved: (newValue) => servico = newValue,
+                      controller: servico,
                       validator: (value) {
                         if (value.isEmpty) return "O campo é obrigatório";
                         if (value.length < 6)
@@ -171,7 +173,17 @@ class _CadastroState extends State<Cadastro> {
     );
   }
 
-  void signUp() {
-    if (_formKey.currentState.validate()) {}
+  void signUp() async {
+    if (_formKey.currentState.validate()) {
+      await Auth().signUp(email.text.trim(), senha.text);
+
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MyHomePage(
+              title: "HelpaEu",
+            ),
+          ));
+    }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:HelpaEu/auth/auth.dart';
-import 'package:HelpaEu/main.dart';
+import 'package:HelpaEu/pages/home.dart';
 import 'package:HelpaEu/resources/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
