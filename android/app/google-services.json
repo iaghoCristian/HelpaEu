@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "395534880555",
+    "firebase_url": "https://helpa-eu.firebaseio.com",
+    "project_id": "helpa-eu",
+    "storage_bucket": "helpa-eu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395534880555:android:54a53b8483b63d7291bf6e",
+        "android_client_info": {
+          "package_name": "com.example.HelpaEu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395534880555-uarnohj5hf3kknmmej9f0s7gts27sjs2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo0VB0Ahwoca096Ki70TmhbWXhS410tkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395534880555-uarnohj5hf3kknmmej9f0s7gts27sjs2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

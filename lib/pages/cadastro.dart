@@ -1,3 +1,4 @@
+import 'package:HelpaEu/resources/color.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -11,17 +12,17 @@ String servico;
 
 final _formKey = GlobalKey<FormState>();
 
-class PageCadastro extends StatefulWidget {
+class Cadastro extends StatefulWidget {
   @override
-  _PageCadastroState createState() => _PageCadastroState();
+  _CadastroState createState() => _CadastroState();
 }
 
-class _PageCadastroState extends State<PageCadastro> {
+class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      backgroundColor: Color(0xff324755),
+      backgroundColor: grayColor,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Center(
@@ -63,7 +64,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         labelText: 'Email',
                         labelStyle: TextStyle(color: Colors.grey),
                         enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffD97D54)))),
+                            borderSide: BorderSide(color: borderOrange))),
                   ),
                   TextFormField(
                     style: TextStyle(color: Colors.white),
@@ -78,7 +79,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         labelText: 'Senha',
                         labelStyle: TextStyle(color: Colors.grey),
                         enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffD97D54)))),
+                            borderSide: BorderSide(color: borderOrange))),
                   ),
                   Visibility(
                     visible: botaoPrestador,
@@ -94,8 +95,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           labelText: 'Serviço',
                           labelStyle: TextStyle(color: Colors.grey),
                           enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Color(0xffD97D54)))),
+                              borderSide: BorderSide(color: borderOrange))),
                     ),
                   )
                 ],
@@ -120,8 +120,8 @@ class _PageCadastroState extends State<PageCadastro> {
                         botaoPrestador = !botaoPrestador;
                       });
                     },
-                    color: botaoCliente ? Colors.white : Color(0xff324755),
-                    textColor: botaoCliente ? Color(0xff324755) : Colors.white,
+                    color: botaoCliente ? Colors.white : grayColor,
+                    textColor: botaoCliente ? grayColor : Colors.white,
                     child: Text("Cliente".toUpperCase(),
                         style: TextStyle(fontSize: 14)),
                   ),
@@ -139,9 +139,8 @@ class _PageCadastroState extends State<PageCadastro> {
                         botaoPrestador = !botaoPrestador;
                       });
                     },
-                    color: botaoPrestador ? Colors.white : Color(0xff324755),
-                    textColor:
-                        botaoPrestador ? Color(0xff324755) : Colors.white,
+                    color: botaoPrestador ? Colors.white : grayColor,
+                    textColor: botaoPrestador ? grayColor : Colors.white,
                     child: Text("Prestador".toUpperCase(),
                         style: TextStyle(fontSize: 14)),
                   ),
@@ -159,7 +158,7 @@ class _PageCadastroState extends State<PageCadastro> {
                       signUp();
                     },
                     color: Colors.white,
-                    textColor: Color(0xff324755),
+                    textColor: grayColor,
                     child: Text("Próximo".toUpperCase(),
                         style: TextStyle(fontSize: 14)),
                   ),
