@@ -1,5 +1,9 @@
+import 'package:HelpaEu/auth/auth.dart';
+import 'package:HelpaEu/pages/home.dart';
+import 'package:HelpaEu/pages/login.dart';
 import 'package:HelpaEu/pages/welcome.dart';
 import 'package:HelpaEu/resources/color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,8 +18,12 @@ class _SplashState extends State<Splash> {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 3)).then((_) async {
+      FirebaseUser user = await Auth().getCurrentUser();
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return Welcome();
+        if (user != null) {
+          return MyHomePage(title: "HelpaEu");
+        }
+        return Login();
       }));
     });
   }

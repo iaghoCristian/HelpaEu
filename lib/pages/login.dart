@@ -21,10 +21,7 @@ class _LoginState extends State<Login> {
       await Auth().signIn(email.text.trim(), senha.text);
       FirebaseUser user = await Auth().getCurrentUser();
       if (user != null) {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => MyHomePage(title: "HelpaEu")));
+        Navigator.pushReplacementNamed(context, '/');
       }
     }
 
