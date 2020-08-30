@@ -42,21 +42,18 @@ class _User extends State<User> {
         secondList.add(prestador);
       });
       setState(() {
-        prestadores = secondList;
+        conta = secondList;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Sua conta"),
       ),
-      body: 
-
-      
+      body: Center(),
     );
   }
 }
