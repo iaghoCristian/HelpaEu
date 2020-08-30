@@ -3,6 +3,7 @@ import 'package:HelpaEu/pages/home.dart';
 import 'package:HelpaEu/resources/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -15,13 +16,39 @@ class _LoginState extends State<Login> {
   final email = TextEditingController();
   final senha = TextEditingController();
 
+  _onAlertError(context) {
+    Alert(
+      context: context,
+      type: AlertType.error,
+      title: "Conta não encontrada",
+      desc: "Revise as informações",
+      buttons: [
+        DialogButton(
+          color: grayColor,
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
+  }
+
   @override
   Widget build(BuildContext context) {
     void authLogin() async {
       await Auth().signIn(email.text.trim(), senha.text);
       FirebaseUser user = await Auth().getCurrentUser();
       if (user != null) {
-        Navigator.pushReplacementNamed(context, '/');
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MyHomePage(title: "HelpaEu"),
+            ));
+      } else {
+        _onAlertError(context);
       }
     }
 

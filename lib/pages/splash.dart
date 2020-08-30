@@ -1,6 +1,5 @@
 import 'package:HelpaEu/auth/auth.dart';
 import 'package:HelpaEu/pages/home.dart';
-import 'package:HelpaEu/pages/login.dart';
 import 'package:HelpaEu/pages/welcome.dart';
 import 'package:HelpaEu/resources/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +22,7 @@ class _SplashState extends State<Splash> {
         if (user != null) {
           return MyHomePage(title: "HelpaEu");
         }
-        return Login();
+        return Welcome();
       }));
     });
   }
