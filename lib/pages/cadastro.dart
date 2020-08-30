@@ -241,18 +241,29 @@ class _CadastroState extends State<Cadastro> {
   void signUp() async {
     if (_formKey.currentState.validate()) {
       String idUser = await Auth().signUp(email.text.trim(), senha.text);
-
-      await Firestore.instance
-          .collection('prestador')
-          .document(idUser)
-          .setData({
-        'nome': nome.text.toString(),
-        'celular': celular.text.toString(),
-        'descricao': descricao.text.toString(),
-        'cidade': cidade.text.toString(),
-        'estado': estado.text.toString(),
-        'profissao': servico,
-      });
+      if (botaoPrestador == true) {
+        await Firestore.instance
+            .collection('prestador')
+            .document(idUser)
+            .setData({
+          'nome': nome.text.toString(),
+          'celular': celular.text.toString(),
+          'descricao': descricao.text.toString(),
+          'cidade': cidade.text.toString(),
+          'estado': estado.text.toString(),
+          'profissao': servico
+        });
+      } else if (botaoCliente == true) {
+        await Firestore.instance
+            .collection('cliente')
+            .document(idUser)
+            .setData({
+          'nome': nome.text.toString(),
+          'celular': celular.text.toString(),
+          'cidade': cidade.text.toString(),
+          'estado': estado.text.toString()
+        });
+      }
 
       Navigator.pushReplacement(
           context,
