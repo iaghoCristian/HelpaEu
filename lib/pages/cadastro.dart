@@ -3,6 +3,7 @@ import 'package:HelpaEu/pages/home.dart';
 import 'package:HelpaEu/resources/color.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 bool botaoCliente = true;
 bool botaoPrestador = false;
@@ -18,7 +19,17 @@ class _CadastroState extends State<Cadastro> {
   final nome = TextEditingController();
   final email = TextEditingController();
   final senha = TextEditingController();
-  final servico = TextEditingController();
+  final celular = TextEditingController();
+  final cidade = TextEditingController();
+  final estado = TextEditingController();
+  final descricao = TextEditingController();
+  var servico;
+  List<String> servicos = <String>[
+    "Pedreiro",
+    "Bombeiro",
+    "Encanador",
+    "Engenheiro"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -83,21 +94,75 @@ class _CadastroState extends State<Cadastro> {
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: borderOrange))),
                   ),
+                  TextFormField(
+                    style: TextStyle(color: Colors.white),
+                    controller: celular,
+                    validator: (value) {
+                      if (value.isEmpty) return "O campo é obrigatório";
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Celular',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: borderOrange))),
+                  ),
+                  TextFormField(
+                    style: TextStyle(color: Colors.white),
+                    controller: cidade,
+                    validator: (value) {
+                      if (value.isEmpty) return "O campo é obrigatório";
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Cidade',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: borderOrange))),
+                  ),
+                  TextFormField(
+                    style: TextStyle(color: Colors.white),
+                    controller: estado,
+                    validator: (value) {
+                      if (value.isEmpty) return "O campo é obrigatório";
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Estado',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: borderOrange))),
+                  ),
+                  TextFormField(
+                    style: TextStyle(color: Colors.white),
+                    controller: descricao,
+                    validator: (value) {
+                      if (value.isEmpty) return "O campo é obrigatório";
+                    },
+                    decoration: InputDecoration(
+                        labelText: 'Descrição',
+                        labelStyle: TextStyle(color: Colors.grey),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: borderOrange))),
+                  ),
                   Visibility(
                     visible: botaoPrestador,
-                    child: TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: servico,
-                      validator: (value) {
-                        if (value.isEmpty) return "O campo é obrigatório";
-                        if (value.length < 6)
-                          return "A senha precisa ter no mínimo 6 caracteres";
+                    child: DropdownButton(
+                      isExpanded: true,
+                      items: servicos
+                          .map((value) => DropdownMenuItem(
+                                child: Text(
+                                  value,
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                                value: value,
+                              ))
+                          .toList(),
+                      onChanged: (servicoSelecionado) {
+                        setState(() {
+                          servico = servicoSelecionado;
+                        });
                       },
-                      decoration: InputDecoration(
-                          labelText: 'Serviço',
-                          labelStyle: TextStyle(color: Colors.grey),
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: borderOrange))),
+                      value: servico,
+                      hint: Text("Profissão",
+                          style: TextStyle(color: Colors.grey)),
                     ),
                   )
                 ],
@@ -175,7 +240,19 @@ class _CadastroState extends State<Cadastro> {
 
   void signUp() async {
     if (_formKey.currentState.validate()) {
-      await Auth().signUp(email.text.trim(), senha.text);
+      String idUser = await Auth().signUp(email.text.trim(), senha.text);
+
+      await Firestore.instance
+          .collection('prestador')
+          .document(idUser)
+          .setData({
+        'nome': nome.text.toString(),
+        'celular': celular.text.toString(),
+        'descricao': descricao.text.toString(),
+        'cidade': cidade.text.toString(),
+        'estado': estado.text.toString(),
+        'profissao': servico,
+      });
 
       Navigator.pushReplacement(
           context,
