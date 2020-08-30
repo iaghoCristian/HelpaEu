@@ -1,6 +1,6 @@
 import 'package:HelpaEu/auth/auth.dart';
 import 'package:HelpaEu/main.dart';
-import 'package:HelpaEu/pages/Cadastro.dart';
+import 'package:HelpaEu/pages/cadastro.dart';
 import 'package:HelpaEu/pages/login.dart';
 import 'package:HelpaEu/resources/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';

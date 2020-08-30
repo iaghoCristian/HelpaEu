@@ -77,19 +77,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: GridView.count(
-        crossAxisCount: 3,
+        crossAxisCount: 2,
         crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
         padding: EdgeInsets.all(20),
         children: prestadores
             .map(
               (prestador) => Container(
-                height: 100,
-                width: 110,
                 color: Colors.grey[300],
                 child: Column(children: [
                   Container(
                     padding: EdgeInsets.only(top: 8, left: 8, bottom: 8),
-                    child: Text(prestador.nome),
+                    child: Text(
+                      prestador.nome,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   Container(
                     child: Text(prestador.profissao),
