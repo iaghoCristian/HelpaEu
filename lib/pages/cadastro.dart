@@ -132,17 +132,20 @@ class _CadastroState extends State<Cadastro> {
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: borderOrange))),
                     ),
-                    TextFormField(
-                      style: TextStyle(color: Colors.white),
-                      controller: descricao,
-                      validator: (value) {
-                        if (value.isEmpty) return "O campo é obrigatório";
-                      },
-                      decoration: InputDecoration(
-                          labelText: 'Descrição',
-                          labelStyle: TextStyle(color: Colors.grey),
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: borderOrange))),
+                    Visibility(
+                      visible: botaoPrestador,
+                      child: TextFormField(
+                        style: TextStyle(color: Colors.white),
+                        controller: descricao,
+                        validator: (value) {
+                          if (value.isEmpty) return "O campo é obrigatório";
+                        },
+                        decoration: InputDecoration(
+                            labelText: 'Descrição',
+                            labelStyle: TextStyle(color: Colors.grey),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderOrange))),
+                      ),
                     ),
                     Visibility(
                       visible: botaoPrestador,
