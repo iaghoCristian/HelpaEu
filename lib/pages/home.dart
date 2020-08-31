@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:HelpaEu/auth/auth.dart';
 import 'package:HelpaEu/models/prestador.dart';
+import 'package:HelpaEu/pages/servicosDetail.dart';
 import 'package:HelpaEu/pages/welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -83,20 +84,49 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(20),
         children: prestadores
             .map(
-              (prestador) => Container(
-                color: Colors.grey[300],
-                child: Column(children: [
-                  Container(
-                    padding: EdgeInsets.only(top: 8, left: 8, bottom: 8),
-                    child: Text(
-                      prestador.nome,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+              (prestador) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ServicosDetalhes(
+                              prestador: prestador,
+                            )),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [Color(0xff853DE8), Colors.white])),
+                  child: Column(children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 8),
+                      child: Text(
+                        prestador.profissao,
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: Text(prestador.profissao),
-                  ),
-                ]),
+                    Container(
+                      padding: EdgeInsets.only(top: 8, left: 8, bottom: 8),
+                      child: Text(
+                        prestador.nome,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
+                      ),
+                    ),
+                    Container(
+                      height: 75,
+                      width: 75,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/images/iconServicos.png'),
+                            fit: BoxFit.contain),
+                      ),
+                    )
+                  ]),
+                ),
               ),
             )
             .toList(),
