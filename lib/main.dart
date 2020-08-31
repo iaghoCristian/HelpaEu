@@ -1,6 +1,7 @@
 import 'package:HelpaEu/pages/cadastro.dart';
 import 'package:HelpaEu/pages/home.dart';
 import 'package:HelpaEu/pages/splash.dart';
+import 'package:HelpaEu/resources/color.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: grayMaterialColor,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute: '/splash',

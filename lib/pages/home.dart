@@ -4,6 +4,7 @@ import 'package:HelpaEu/auth/auth.dart';
 import 'package:HelpaEu/models/prestador.dart';
 import 'package:HelpaEu/pages/servicosDetail.dart';
 import 'package:HelpaEu/pages/welcome.dart';
+import 'package:HelpaEu/resources/color.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -57,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("HelpaEu"),
         actions: [
           IconButton(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(Icons.power_settings_new),
             tooltip: "Conta",
             onPressed: () {
               Auth().signOut();
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(30),
         children: prestadores
             .map(
               (prestador) => GestureDetector(
@@ -99,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       gradient: LinearGradient(
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
-                          colors: [Color(0xff853DE8), Colors.white])),
+                          colors: [grayColor, Colors.white])),
                   child: Column(children: [
                     Container(
                       padding: EdgeInsets.only(top: 8),
@@ -113,12 +114,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         prestador.nome,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
+                            fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ),
                     Container(
-                      height: 75,
-                      width: 75,
+                      margin: EdgeInsets.only(top: 13),
+                      height: 60,
+                      width: 60,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage('assets/images/iconServicos.png'),
