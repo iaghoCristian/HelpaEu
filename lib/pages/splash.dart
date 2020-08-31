@@ -33,14 +33,9 @@ class _SplashState extends State<Splash> {
         color: grayColor,
         child: Center(
           child: Container(
-            width: 210,
-            height: 210,
-            child: Text(
-              "Logo Aqui",
-              style: TextStyle(
-                  color: Colors.white, decoration: TextDecoration.none),
-            ),
-          ),
+              width: 210,
+              height: 210,
+              child: Image.asset("assets/images/HelpaEu-Logo-.png")),
         ));
   }
 }
