@@ -28,7 +28,13 @@ class _CadastroState extends State<Cadastro> {
     "Pedreiro",
     "Bombeiro",
     "Encanador",
-    "Engenheiro"
+    "Engenheiro",
+    "Desenvolvedor",
+    "Faxinheiro",
+    "Professor",
+    "Adestrador",
+    "Técnico em Informática",
+    "Outro"
   ];
 
   @override
