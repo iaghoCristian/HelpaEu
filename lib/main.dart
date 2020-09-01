@@ -1,4 +1,3 @@
-import 'package:HelpaEu/pages/cadastro.dart';
 import 'package:HelpaEu/pages/home.dart';
 import 'package:HelpaEu/pages/splash.dart';
 import 'package:HelpaEu/resources/color.dart';
